@@ -1,0 +1,95 @@
+5. Standard I/O 5. Standard I/O 5. Standard I/O Library
+5.1. INTRODUCTION
+In this chapter, we describe the standard I/O library. This library is
+specified by the ISO C standard because it has been implemented on many
+operating systems other than the UNIX System. Additional interfaces are
+defined as extensions to the ISO C standard by the Single UNIX Specification.
+
+The standard I/O library handles such details as buffer allocation and
+performing I/O in optimal-sized chunks, obviating our need to worry about
+using the correct block size (as in Section 3.9). This makes the library easy
+to use, but at the same time introduces another set of problems if we’re not
+cognizant of what’s going on.
+
+The standard I/O library was written by Dennis Ritchie around 1975. It was a
+major revision of the Portable I/O library written by Mike Lesk. Surprisingly
+5. Standard I/O 5. Standard I/O Library
+5.1. INTRODUCTION
+In this chapter, we describe the standard I/O library. This library is
+specified by the ISO C standard because it has been implemented on many
+operating systems other than the UNIX System. Additional interfaces are
+defined as extensions to the ISO C standard by the Single UNIX Specification.
+
+TTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTThe standard I/O library handles such details as buffer allocation and
+performing I/O in optimal-sized chunks, obviating our need to worry about
+using the correct block size (as in Section 3.9). This makes the library easy
+to use, but at the same time introduces another set of problems if we’re not
+cognizant of what’s going on.
+
+The standard I/O library was written by Dennis Ritchie around 1975. It was a
+major revision of the Portable I/O library written by Mike Lesk. Surprisingly
+little has changed in the standard I/O library after more than 35 years.
+little has changlittle has changlittle has changlittle has changed in the standard I/O library after more than 35 years.
+
+The standard I/O library was written by Dennis Ritchie around 1975. It was a
+major revision of the Portable I/O library written by Mike Lesk. Surprisingly
+little has changed in the standard I/O library after more than 35 years.
+
+5.2. STREAMS AND FILE OBJECTS
+In Chapter 3, all the I/O routines centered on file descriptors. When a file
+is opened, a file descriptor is returned, and that descriptor is then used for
+all subsequent I/O operations. With the standard I/O library, the discussion
+centers on streams. (Do not confuse the standard I/O term stream with the
+STREAMS I/O system that is part of System V and was standardized in the XSI
+STREAMS option in the Single UNIX Specification, but is now marked obsolescent
+in SUSv4.) When we open or create a file with the standard I/O library, we say
+that we have associated a stream with the file.
+
+With the ASCII character set, a single character is represented by a single
+byte. With international character sets, a character can be represented by
+more than one byte. Standard I/O file streams can be used with both
+single-byte and multibyte (“wide”) character sets. A stream’s orientation
+determines whether the characters that are read and written are single byte or
+multibyte. Initially, when a stream is created, it has no orientation. If a
+multibyte I/O function (see <wchar.h>) is used on a stream without
+orientation, the stream’s orientation is set to wide oriented. If a byte I/O
+function is used on a stream without orientation, the stream’s orientation is
+set to byte oriented. Only two functions can change the orientation once set.
+The freopen function (discussed shortly) will clear a stream’s orientation;
+the fwide function can be used to set a stream’s orientation.
+
+The fwide function performs different tasks, depending on the value of the
+mode argument.
+
+• If the mode argument is negative, fwide will try to make the specified
+stream byte oriented.
+
+• If the mode argument is positive, fwide will try to make the specified
+stream wide oriented.
+
+• If the mode argument is zero, fwide will not try to set the orientation, but
+will still return a value identifying the stream’s orientation.
+
+Note that fwide will not change the orientation of a stream that is already
+oriented. Also note that there is no error return. Consider what would happen
+if the stream is invalid. The only recourse we have is to clear errno before
+calling fwide and check the value of errno when we return. Throughout the rest
+of this book, we will deal only with byte-oriented streams.
+
+When we open a stream, the standard I/O function fopen (Section 5.5) returns a
+pointer to a FILE object. This object is normally a structure that contains
+all the information required by the standard I/O library to manage the stream:
+the file descriptor used for actual I/O, a pointer to a buffer for the stream,
+the size of the buffer, a count of the number of characters currently in the
+buffer, an error flag, and the like.
+
+Application software should never need to examine a FILE object. To reference
+the stream, we pass its FILE pointer as an argument to each standard I/O
+function. Throughout this text, we’ll refer to a pointer to a FILE object, the
+type FILE *, as a file pointer.
+
+Throughout this chapter, we describe the standard I/O library in the context
+of a UNIX system. As we mentioned, this library has been ported to a wide
+variety of other operating systems. To provide some insight about how this
+library can be implemented, we will talk about its typical implementation on a
+UNIX system.
