@@ -1,6 +1,6 @@
 import binascii
 
-def xor_encrypt(plain, key):
+def xor_encrypt_str(plain, key):
     result = ''
     idx = 0
     for c in plain:
@@ -22,6 +22,6 @@ if __name__ == '__main__':
     key = 'ICE'
     s3 = "Burning 'em, if you ain't quick and nimble\nI go crazy when I hear a cymbal"
     #print len(s1), len(s2), len(s3)
-    #print binascii.hexlify(xor_encrypt(s1, key))
-    #print binascii.hexlify(xor_encrypt(s2, key))
-    print binascii.hexlify(xor_encrypt(s3, key))
+    #print binascii.hexlify(xor_encrypt_str(s1, key))
+    #print binascii.hexlify(xor_encrypt_str(s2, key))
+    print binascii.hexlify(xor_encrypt_str(s3, key))

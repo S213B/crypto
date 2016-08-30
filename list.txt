@@ -13,7 +13,7 @@
 13. ECB cut-and-paste                         (ecb_cut_paste.py)
 14. Byte-at-a-time ECB decryption (Harder)    (byte_at_a_time_ecb_decryption2.py)
 15. PKCS#7 padding validation                 (pkcs7.py)
-16. CBC bitflipping attacks
+16. CBC bitflipping attacks                   (cbc_bitflip_atk.py)
 
 Misc:
 ham_dis.py                             : calculate hamming distance

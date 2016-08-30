@@ -11,7 +11,7 @@ def cbc_decrypt(decrypt_func, iv, rev_add_func, cipher, key, size = 16):
         t_plain = decrypt_func(block, [ord(c) for c in key])
         plain += rev_add_func(t_plain, iv)
         iv = block
-    return ''.join([chr(i) for i in plain])
+    return pkcs7_unpad(''.join([chr(i) for i in plain]), size)
 
 def cbc_encrypt(encrypt_func, iv, add_func, plain, key, size = 16):
     plain = pkcs7_pad(plain, size)
@@ -24,7 +24,7 @@ def cbc_encrypt(encrypt_func, iv, add_func, plain, key, size = 16):
         iv = t_cipher
     return ''.join([chr(i) for i in cipher]) 
 
-if __name__ == "__main__":
+def main():
     f = open( "cbc_mode.txt", 'r' )
     b64_cipher = f.read()
     f.close()
@@ -34,7 +34,7 @@ if __name__ == "__main__":
     key = "YELLOW SUBMARINE"
 
     plain = cbc_decrypt(aes_128_decrypt, iv, xor_encrypt_bin, cipher, key)
-    plain = pkcs7_unpad(plain, 16)
+    #plain = pkcs7_unpad(plain, 16)
     
     print plain
 
@@ -48,3 +48,6 @@ if __name__ == "__main__":
     f.write( b64_cipher )
     f.close()
     '''
+
+if __name__ == "__main__":
+    main()
