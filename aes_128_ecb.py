@@ -259,16 +259,14 @@ def text_to_ecb_block(text, size = 16):
         r += [text[offset:offset+size]]
     return r
 
-'''
-def aes_128_ecb_encrypt(plaintext, key):
-    key = [[ord(c) for c in key]]
-    key_expansion(key)
-    ciphertext = []
-    ecb_blocks = text_to_ecb_block([ord(c) for c in plaintext])
-    for block in ecb_blocks:
-        ciphertext += encrypt_core(block, key)
-    return ''.join([chr(i) for i in ciphertext])
-    '''
+#def aes_128_ecb_encrypt(plaintext, key):
+#    key = [[ord(c) for c in key]]
+#    key_expansion(key)
+#    ciphertext = []
+#    ecb_blocks = text_to_ecb_block([ord(c) for c in plaintext])
+#    for block in ecb_blocks:
+#        ciphertext += encrypt_core(block, key)
+#    return ''.join([chr(i) for i in ciphertext])
 
 def aes_128_encrypt(plaintext, key):
     key = [key]
@@ -285,16 +283,14 @@ def aes_128_encrypt(plaintext, key):
     add_round_key(state, key[10])
     return matrix_to_list(state)
 
-'''
-def aes_128_ecb_decrypt(ciphertext, key):
-    key = [[ord(c) for c in key]]
-    key_expansion(key)
-    plaintext = []
-    ecb_blocks = text_to_ecb_block([ord(c) for c in ciphertext])
-    for block in ecb_blocks:
-        plaintext += decrypt_core(block, key)
-    return ''.join([chr(i) for i in plaintext])
-    '''
+#def aes_128_ecb_decrypt(ciphertext, key):
+#    key = [[ord(c) for c in key]]
+#    key_expansion(key)
+#    plaintext = []
+#    ecb_blocks = text_to_ecb_block([ord(c) for c in ciphertext])
+#    for block in ecb_blocks:
+#        plaintext += decrypt_core(block, key)
+#    return ''.join([chr(i) for i in plaintext])
 
 def aes_128_decrypt(ciphertext, key):
     key = [key]

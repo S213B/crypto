@@ -10,11 +10,13 @@
 10. Implement CBC mode                        (cbc_mode.py)
 11. An ECB/CBC detection oracle               (ecb_cbc_detect.py)
 12. Byte-at-a-time ECB decryption (Simple)    (byte_at_a_time_ecb_decryption.py)
-13. ECB cut-and-paste
-14. Byte-at-a-time ECB decryption (Harder)
-15. PKCS#7 padding validation
+13. ECB cut-and-paste                         (ecb_cut_paste.py)
+14. Byte-at-a-time ECB decryption (Harder)    (byte_at_a_time_ecb_decryption2.py)
+15. PKCS#7 padding validation                 (pkcs7.py)
 16. CBC bitflipping attacks
 
 Misc:
-ham_dis.py     : calculate hamming distance
-test_ecb_cbc.py: run ecb_cbc_detect.py 100 times to test correctness
+ham_dis.py                             : calculate hamming distance
+test_ecb_cbc.py                        : run ecb_cbc_detect.py 30 times to test correctness
+my_rand.py                             : generate random object
+test_byte_at_a_time_ecb_decryption2.py : run byte_at_a_time_ecb_decryption2.py 30 times to test correctness

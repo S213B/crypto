@@ -1,17 +1,18 @@
-#import binascii
+import binascii
 import aes_128_ecb
 
-def ecb_detect(line):
+def detect_ecb_mode(line, block_len = 16):
     #print line
     #line = binascii.unhexlify(hex_line)
-    blocks = aes_128_ecb.text_to_ecb_block(line, 32)
+    blocks = aes_128_ecb.text_to_ecb_block(line, block_len)
+    return len(blocks) - len(set(blocks))
     #print len(blocks), len(set(blocks))
-    if len(blocks) > len(set(blocks)):
+    #if len(blocks) > len(set(blocks)):
         #print len(blocks), len(set(blocks))
         #print len(blocks)-len(set(blocks)), line
-        return True
-    else:
-        return False
+    #    return True
+    #else:
+    #    return False
     '''
     cnt = 0
     for i in range(len(blocks) - 1):
@@ -25,6 +26,9 @@ def ecb_detect(line):
 if __name__ == '__main__':
     f = open('ecb_detect.txt', 'r')
     for line in f:
-        if ecb_detect(line):
+        _line = line.replace('\n', '')
+        _line = binascii.unhexlify(_line)
+        if detect_ecb_mode(_line) > 0:
             print "ECB detected"
+            #print line
     f.close()

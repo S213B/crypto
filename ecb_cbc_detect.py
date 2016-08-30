@@ -1,32 +1,19 @@
-import random
-import string
 import aes_128_ecb
 import cbc_mode
 import pkcs7
 import xor_encrypt
 import base64
 import ecb_detect
+from my_rand import *
 
-def my_rand(end, start = 0):
-    num = int(random.random() * (end - start))
-    return num + start
+def ecb_cbc_detect(cipher):
+    if ecb_detect.detect_ecb_mode(cipher) > 0:
+        print "detect mode: ECB"
+        return True
+    else:
+        print "detect mode: CBC"
+        return False
 
-def my_rand_str(len):
-    r = ''
-    for i in range(len):
-        while True:
-            c = chr(my_rand(128))
-            if c in string.printable:
-                r += c
-                break
-    return r
-
-def my_rand_byte(len):
-    r = []
-    for i in range(len):
-        c = my_rand(256)
-        r.append(c)
-    return r
 
 def main():
     f = open("ecb_cbc_detect.txt", 'r')
@@ -55,10 +42,7 @@ def main():
 
     #print base64.b64encode(cipher)
 
-    if ecb_detect.ecb_detect(cipher):
-        print "detect mode: ECB"
-    else:
-        print "detect mode: CBC"
+    if not ecb_cbc_detect(cipher):
         flag -= 1
 
     if flag == 0:
