@@ -14,10 +14,12 @@ def pkcs7_pad(input, block_size):
 def pkcs7_unpad(input, block_size):
     padding = input[-1]
     cnt = ord(padding)
-    if cnt >= block_size:
+    #if cnt >= block_size or len(input) % block_size != 0:
+    if len(input) % block_size != 0:
         raise BadPadError
-    if input[-cnt:] != padding * cnt:
-        raise BadPadError
+    if cnt >= block_size or input[-cnt:] != padding * cnt:
+        #raise BadPadError
+        return input
     return input[:-cnt]
 
 if __name__ == "__main__":

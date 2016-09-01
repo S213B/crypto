@@ -5,14 +5,13 @@ from single_byte_xor_cipher import single_byte_xor_cipher
 import binascii
 
 def find_keysize(buff, max_keysize = 40):
-    dis = None
     result = {}
     if len(buff) // 2 < max_keysize:
         max_keysize = len(buff) // 2
     for l in range(1, max_keysize):
-        _dis = ham_dis(buff[:l], buff[l:l*2])
-        _dis /= l
-        result[l] = _dis
+        dis = ham_dis(buff[:l], buff[l:l*2])
+        dis /= l
+        result[l] = dis
     ret = sorted(result.iteritems(), key = lambda (k,v):(v,k))
     return ret
 

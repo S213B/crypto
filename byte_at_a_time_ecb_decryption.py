@@ -5,16 +5,11 @@ import binascii
 import my_rand
 import ecb_detect
 
-key = None
+key = my_rand.my_rand_str(16)
 
 def encrypt_with_fixed_key(plain):
     #string = "Um9sbGluJyBpbiBteSA1LjAKV2l0aCBteSByYWctdG9wIGRvd24gc28gbXkgaGFpciBjYW4gYmxvdwpUaGUgZ2lybGllcyBvbiBzdGFuZGJ5IHdhdmluZyBqdXN0IHRvIHNheSBoaQpEaWQgeW91IHN0b3A/IE5vLCBJIGp1c3QgZHJvdmUgYnkK"
     string = "Um9sbGluJyBpbiBteSA1LjA="
-
-    global key
-    if key is None:
-        key = my_rand.my_rand_str(16)
-        #print len(base64.b64decode(string))
 
     plain = plain + base64.b64decode(string)
 

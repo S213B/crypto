@@ -3,8 +3,8 @@ import aes_128_ecb
 import my_rand
 import xor_encrypt
 
-aes_key = None
-cbc_iv = None
+aes_key = my_rand.my_rand_str(16)
+cbc_iv = my_rand.my_rand_byte(16)
 
 def encode_str(plain):
     percent = '%%%x' % ord('%')
@@ -23,12 +23,6 @@ def encode(user_data):
     app_str = ";comment2=%20like%20a%20pound%20of%20bacon";
 
     plain = pre_str + encode_str(user_data) + app_str;
-
-    global aes_key, cbc_iv
-    if aes_key is None:
-        aes_key = my_rand.my_rand_str(16)
-    if cbc_iv is None:
-        cbc_iv = my_rand.my_rand_byte(16)
 
     return cbc_mode.cbc_encrypt(aes_128_ecb.aes_128_encrypt, cbc_iv, xor_encrypt.xor_encrypt_bin, plain, aes_key)
 

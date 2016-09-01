@@ -3,25 +3,15 @@ from my_rand import my_rand, my_rand_str
 from aes_128_ecb import ecb_mode, aes_128_encrypt
 from ecb_detect import detect_ecb_mode
 
-key = None
-prefix_str = None
-suffix_str = None
+key = my_rand_str(16)
+#prefix_str = my_rand_str(my_rand(213))
+#suffix_str = my_rand_str(my_rand(213))
+prefix_str = my_rand_str(my_rand(32))
+suffix_str = my_rand_str(my_rand(32))
+print "prefix string length:", len(prefix_str)
+print "suffix string length:", len(suffix_str)
 
 def encrypt_with_fixed_key(plain):
-    global key, prefix_str, suffix_str
-
-    if key is None:
-        key = my_rand_str(16)
-    if prefix_str is None:
-        #prefix_str = my_rand_str(my_rand(213))
-        prefix_str = my_rand_str(my_rand(32))
-        #prefix_str = my_rand_str(11)
-        print "prefix string length:", len(prefix_str)
-    if suffix_str is None:
-        #suffix_str = my_rand_str(my_rand(213))
-        suffix_str = my_rand_str(my_rand(32))
-        #suffix_str = my_rand_str(13)
-        print "suffix string length:", len(suffix_str)
 
     plain = prefix_str + plain + suffix_str
 
@@ -105,11 +95,12 @@ def byte_at_a_time_ecb_decryption2(encrypt_func):
 
 def main():
 
-    decrypted_text = byte_at_a_time_ecb_decryption2(encrypt_with_fixed_key)
-
-    if decrypted_text == suffix_str:
+    dcrpt_sfx = byte_at_a_time_ecb_decryption2(encrypt_with_fixed_key)
+    #print dcrpt_sfx, len(dcrpt_sfx)
+    #print suffix_str, len(suffix_str)
+    if dcrpt_sfx == suffix_str:
         print "succeed:"
-        print decrypted_text
+        print dcrpt_sfx
     else:
         print "failed"
 
