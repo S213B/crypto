@@ -3,23 +3,25 @@ import binascii
 class BadPadError(Exception):
     pass
 
-def pkcs7_pad(input, block_size):
-    l = len(input)
+def pkcs7_pad(in_txt, block_size):
+    l = len(in_txt)
     remainder = l % block_size
     padding = block_size - remainder
-    return input + chr(padding) * padding
+    return in_txt + chr(padding) * padding
 
-def pkcs7_unpad(input, block_size):
-    padding = input[-1]
+def pkcs7_unpad(in_txt, block_size):
+    padding = in_txt[-1]
     cnt = ord(padding)
-    #if cnt >= block_size or len(input) % block_size != 0:
-    if len(input) % block_size != 0:
+    if len(in_txt) % block_size != 0:
+        print "length error"
         raise BadPadError
-    if cnt >= block_size:
+    if cnt > block_size:
+        print "length short", cnt, block_size
         raise BadPadError
-    if input[-cnt:] != padding * cnt:
+    if in_txt[-cnt:] != padding * cnt:
+        print "pad error"
         raise BadPadError
-    return input[:-cnt]
+    return in_txt[:-cnt]
 
 if __name__ == "__main__":
     plaintext = "YELLOW SUBMARINE"
@@ -42,3 +44,11 @@ if __name__ == "__main__":
         print pkcs7_unpad(str3, 16)
     except BadPadError as err:
         print "Bad Padding Format"
+
+    for i in range(30):
+        from my_rand import my_rand, my_rand_str
+        raw_txt = my_rand_str(my_rand(213))
+        pad_txt = pkcs7_pad(raw_txt, 16)
+        unpad_txt = pkcs7_unpad(pad_txt, 16)
+        if raw_txt != unpad_txt:
+            print "PKCS7 Error"

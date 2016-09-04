@@ -1,6 +1,7 @@
 import random
 import string
 
+# [start, end)
 def my_rand(end, start = 0):
     num = int(random.random() * (end - start))
     return num + start

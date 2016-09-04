@@ -2,7 +2,6 @@ import aes_128
 import ecb_mode
 import cbc_mode
 import pkcs7
-import xor_encrypt
 import base64
 import ecb_detect
 from my_rand import *
@@ -38,7 +37,7 @@ def main():
         print "encrypt mode: ECB"
     else:
         #cbc
-        cipher = cbc_mode.cbc_encrypt(aes_128.aes_128_encrypt, iv, xor_encrypt.xor_encrypt_bin, plain, key)
+        cipher = cbc_mode.cbc_encrypt(aes_128.aes_128_encrypt, iv, plain, key)
         print "encrypt mode: CBC"
 
     #print base64.b64encode(cipher)
@@ -52,4 +51,5 @@ def main():
         print "Detect failed"
 
 if __name__ == '__main__':
-    main()
+    for i in range(30):
+        main()
