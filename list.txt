@@ -4,7 +4,7 @@
 4.  Detect single-character XOR                    (detect_single_c_xor.py)
 5.  Implement repeating-key XOR                    (xor_encrypt.py)
 6.  Break repeating-key XOR                        (rep_xor_decrypt.py)
-7.  AES in ECB mode                                (aes_128_ecb.py)
+7.  AES in ECB mode                                (aes_128.py)
 8.  Detect AES in ECB mode                         (ecb_detect.py)
 9.  Implement PKCS#7 padding                       (pkcs7.py)
 10. Implement CBC mode                             (cbc_mode.py)
@@ -14,7 +14,7 @@
 14. Byte-at-a-time ECB decryption (Harder)         (byte_at_a_time_ecb_decryption2.py)
 15. PKCS#7 padding validation                      (pkcs7.py)
 16. CBC bitflipping attacks                        (cbc_bitflip_atk.py)
-17. The CBC padding oracle
+17. The CBC padding oracle                         (cbc_padding_oracle.py)
 18. Implement CTR, the stream cipher mode
 19. Break fixed-nonce CTR mode using substitutions
 20. Break fixed-nonce CTR statistically
@@ -25,6 +25,8 @@
 
 Misc:
 ham_dis.py                             : calculate hamming distance
-test_ecb_cbc.py                        : run ecb_cbc_detect.py 30 times to test correctness
+ecb_mode.py                            : implement ecb mode
 my_rand.py                             : generate random object
+test_ecb_cbc.py                        : run ecb_cbc_detect.py 30 times to test correctness
 test_byte_at_a_time_ecb_decryption2.py : run byte_at_a_time_ecb_decryption2.py 30 times to test correctness
+test_all.py                            : test all for structure fine-tune

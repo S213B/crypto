@@ -1,7 +1,8 @@
 from byte_at_a_time_ecb_decryption import detect_block_size, is_ecb_mode, make_one_byte_short_dic
 from my_rand import my_rand, my_rand_str
-from aes_128_ecb import ecb_mode, aes_128_encrypt
+from aes_128 import aes_128_encrypt
 from ecb_detect import detect_ecb_mode
+import ecb_mode
 
 key = my_rand_str(16)
 #prefix_str = my_rand_str(my_rand(213))
@@ -15,7 +16,7 @@ def encrypt_with_fixed_key(plain):
 
     plain = prefix_str + plain + suffix_str
 
-    return ecb_mode(aes_128_encrypt, plain, key)
+    return ecb_mode.ecb_encrypt(aes_128_encrypt, plain, key)
 
 def detect_offset_block(encrypt_func, block_len, pad_len):
     # extra block_len for "xxaa aaaa aaax" pad_len overflow

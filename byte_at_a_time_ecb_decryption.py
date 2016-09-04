@@ -1,5 +1,6 @@
 import base64
-import aes_128_ecb
+import aes_128
+import ecb_mode
 import string
 import binascii
 import my_rand
@@ -13,7 +14,7 @@ def encrypt_with_fixed_key(plain):
 
     plain = plain + base64.b64decode(string)
 
-    return aes_128_ecb.ecb_mode(aes_128_ecb.aes_128_encrypt, plain, key)
+    return ecb_mode.ecb_encrypt(aes_128.aes_128_encrypt, plain, key)
 
 def detect_block_size(encrypt_func):
     plain = ''

@@ -1,10 +1,10 @@
 import binascii
-import aes_128_ecb
+import ecb_mode
 
 def detect_ecb_mode(line, block_len = 16):
     #print line
     #line = binascii.unhexlify(hex_line)
-    blocks = aes_128_ecb.text_to_ecb_block(line, block_len)
+    blocks = ecb_mode.text_to_blocks(line, block_len)
     return len(blocks) - len(set(blocks))
     #print len(blocks), len(set(blocks))
     #if len(blocks) > len(set(blocks)):

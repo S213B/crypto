@@ -1,5 +1,6 @@
 from my_rand import *
-from aes_128_ecb import *
+from aes_128 import *
+from ecb_mode import ecb_encrypt, ecb_decrypt
 
 def is_email_valid(email):
     if '#' in email or '=' in email:
@@ -70,9 +71,9 @@ def main():
     plain = plain_cookie
     print "plain:\n" + plain
 
-    cipher = ecb_mode(aes_128_encrypt, plain, key)
+    cipher = ecb_encrypt(aes_128_encrypt, plain, key)
 
-    plain = ecb_mode(aes_128_decrypt, cipher, key)
+    plain = ecb_decrypt(aes_128_decrypt, cipher, key)
 
     plain_cookie = plain
     plain_dic = my_decode(plain_cookie)

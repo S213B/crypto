@@ -1,5 +1,5 @@
 import base64
-import pkcs7
+from ecb_mode import ecb_encrypt, ecb_decrypt
 
 #predefined table
 mul_2 = (
@@ -253,21 +253,6 @@ def list_to_matrix(text):
 def matrix_to_list(state):
     return [state[j][i] for i in range(4) for j in range(4)]
 
-def text_to_ecb_block(text, size = 16):
-    r = []
-    for offset in range(0, len(text), size):
-        r += [text[offset:offset+size]]
-    return r
-
-#def aes_128_ecb_encrypt(plaintext, key):
-#    key = [[ord(c) for c in key]]
-#    key_expansion(key)
-#    ciphertext = []
-#    ecb_blocks = text_to_ecb_block([ord(c) for c in plaintext])
-#    for block in ecb_blocks:
-#        ciphertext += encrypt_core(block, key)
-#    return ''.join([chr(i) for i in ciphertext])
-
 def aes_128_encrypt(plaintext, key):
     key = [key]
     key_expansion(key)
@@ -282,15 +267,6 @@ def aes_128_encrypt(plaintext, key):
     shift_rows(state)
     add_round_key(state, key[10])
     return matrix_to_list(state)
-
-#def aes_128_ecb_decrypt(ciphertext, key):
-#    key = [[ord(c) for c in key]]
-#    key_expansion(key)
-#    plaintext = []
-#    ecb_blocks = text_to_ecb_block([ord(c) for c in ciphertext])
-#    for block in ecb_blocks:
-#        plaintext += decrypt_core(block, key)
-#    return ''.join([chr(i) for i in plaintext])
 
 def aes_128_decrypt(ciphertext, key):
     key = [key]
@@ -307,14 +283,6 @@ def aes_128_decrypt(ciphertext, key):
     add_round_key(state, key[0])
     return matrix_to_list(state)
 
-def ecb_mode(cipher_func, input, key, size = 16):
-    input = pkcs7.pkcs7_pad(input, size)
-    output = []
-    ecb_blocks = text_to_ecb_block([ord(c) for c in input], size)
-    for block in ecb_blocks:
-        output += cipher_func(block, [ord(c) for c in key])
-    return ''.join([chr(i) for i in output])
-
 if __name__ == '__main__':
     key = 'YELLOW SUBMARINE'
 
@@ -328,7 +296,7 @@ if __name__ == '__main__':
 
     #print len(plaintext), ord(plaintext[-1])
     #ciphertext = aes_128_ecb_encrypt(plaintext, key)
-    ciphertext = ecb_mode(aes_128_encrypt, plaintext, key)
+    ciphertext = ecb_encrypt(aes_128_encrypt, plaintext, key)
 
     f = open('cipher.txt', 'w')
     b64_ciphertext = base64.b64encode(ciphertext)
@@ -337,15 +305,15 @@ if __name__ == '__main__':
     f.close()
 
     #decrypt
-    f = open('aes_128_ecb.txt', 'r')
+    f = open('aes_128.txt', 'r')
     b64_ciphertext = f.read()
     f.close();
 
     ciphertext = base64.b64decode(b64_ciphertext)
 
     #plaintext = aes_128_ecb_decrypt(ciphertext, key)
-    plaintext = ecb_mode(aes_128_decrypt, ciphertext, key)
+    plaintext = ecb_decrypt(aes_128_decrypt, ciphertext, key)
 
-    f = open('tmp.txt', 'w')
+    f = open('aes_128_out.txt', 'w')
     f.write(plaintext)
     f.close()

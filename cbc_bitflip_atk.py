@@ -1,5 +1,5 @@
 import cbc_mode
-import aes_128_ecb
+import aes_128
 import my_rand
 import xor_encrypt
 
@@ -24,12 +24,12 @@ def encode(user_data):
 
     plain = pre_str + encode_str(user_data) + app_str;
 
-    return cbc_mode.cbc_encrypt(aes_128_ecb.aes_128_encrypt, cbc_iv, xor_encrypt.xor_encrypt_bin, plain, aes_key)
+    return cbc_mode.cbc_encrypt(aes_128.aes_128_encrypt, cbc_iv, xor_encrypt.xor_encrypt_bin, plain, aes_key)
 
 def is_admin(cipher):
     target = ";admin=true;"
 
-    plain = cbc_mode.cbc_decrypt(aes_128_ecb.aes_128_decrypt, cbc_iv, xor_encrypt.xor_encrypt_bin, cipher, aes_key)
+    plain = cbc_mode.cbc_decrypt(aes_128.aes_128_decrypt, cbc_iv, xor_encrypt.xor_encrypt_bin, cipher, aes_key)
     #print len(plain)
     #print plain
 

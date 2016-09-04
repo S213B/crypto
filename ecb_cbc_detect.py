@@ -1,4 +1,5 @@
-import aes_128_ecb
+import aes_128
+import ecb_mode
 import cbc_mode
 import pkcs7
 import xor_encrypt
@@ -33,11 +34,11 @@ def main():
 
     if flag == 0:
         #ecb
-        cipher = aes_128_ecb.ecb_mode(aes_128_ecb.aes_128_encrypt, plain, key)
+        cipher = ecb_mode.ecb_encrypt(aes_128.aes_128_encrypt, plain, key)
         print "encrypt mode: ECB"
     else:
         #cbc
-        cipher = cbc_mode.cbc_encrypt(aes_128_ecb.aes_128_encrypt, iv, xor_encrypt.xor_encrypt_bin, plain, key)
+        cipher = cbc_mode.cbc_encrypt(aes_128.aes_128_encrypt, iv, xor_encrypt.xor_encrypt_bin, plain, key)
         print "encrypt mode: CBC"
 
     #print base64.b64encode(cipher)

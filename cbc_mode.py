@@ -1,12 +1,13 @@
 from xor_encrypt import *
-from aes_128_ecb import *
+from aes_128 import *
+from ecb_mode import text_to_blocks
 from pkcs7 import *
 import binascii
 import base64
 
 def cbc_decrypt(decrypt_func, iv, rev_add_func, cipher, key, size = 16):
     plain = []
-    cbc_blocks = text_to_ecb_block([ord(c) for c in cipher], size)
+    cbc_blocks = text_to_blocks([ord(c) for c in cipher], size)
     for block in cbc_blocks:
         t_plain = decrypt_func(block, [ord(c) for c in key])
         plain += rev_add_func(t_plain, iv)
@@ -16,7 +17,7 @@ def cbc_decrypt(decrypt_func, iv, rev_add_func, cipher, key, size = 16):
 def cbc_encrypt(encrypt_func, iv, add_func, plain, key, size = 16):
     plain = pkcs7_pad(plain, size)
     cipher = []
-    cbc_blocks = text_to_ecb_block([ord(c) for c in plain], size)
+    cbc_blocks = text_to_blocks([ord(c) for c in plain], size)
     for block in cbc_blocks:
         block = add_func(block, iv)
         t_cipher = encrypt_func(block, [ord(c) for c in key])
