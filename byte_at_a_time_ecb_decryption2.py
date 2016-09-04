@@ -8,8 +8,8 @@ key = my_rand_str(16)
 #suffix_str = my_rand_str(my_rand(213))
 prefix_str = my_rand_str(my_rand(32))
 suffix_str = my_rand_str(my_rand(32))
-print "prefix string length:", len(prefix_str)
-print "suffix string length:", len(suffix_str)
+#print "prefix string length:", len(prefix_str)
+#print "suffix string length:", len(suffix_str)
 
 def encrypt_with_fixed_key(plain):
 
@@ -57,7 +57,7 @@ def byte_at_a_time_ecb_decryption2(encrypt_func):
     block_cnt = empty_len / block_len
     print "block_cnt:", block_cnt
 
-    if not is_ecb_mode(encrypt_func, block_len, pad_len, block_cnt):
+    if not is_ecb_mode(encrypt_func, block_len, pad_len):
         print "Not ECB mode"
         return None
     else:

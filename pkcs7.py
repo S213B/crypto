@@ -6,8 +6,6 @@ class BadPadError(Exception):
 def pkcs7_pad(input, block_size):
     l = len(input)
     remainder = l % block_size
-    if remainder == 0:
-        return input
     padding = block_size - remainder
     return input + chr(padding) * padding
 
@@ -17,9 +15,10 @@ def pkcs7_unpad(input, block_size):
     #if cnt >= block_size or len(input) % block_size != 0:
     if len(input) % block_size != 0:
         raise BadPadError
-    if cnt >= block_size or input[-cnt:] != padding * cnt:
-        #raise BadPadError
-        return input
+    if cnt >= block_size:
+        raise BadPadError
+    if input[-cnt:] != padding * cnt:
+        raise BadPadError
     return input[:-cnt]
 
 if __name__ == "__main__":

@@ -19,25 +19,25 @@ def detect_block_size(encrypt_func):
     plain = ''
     cipher_len = len(encrypt_func(plain))
     pad_len = 0
-    block_len = 1
+    block_len = 0
     while True:
         plain += 'a'
+        pad_len += 1
         _cipher_len = len(encrypt_func(plain))
-        if _cipher_len == cipher_len:
-            pad_len += 1
-        else:
+        if cipher_len != _cipher_len:
             cipher_len = _cipher_len
             break
     while True:
         plain += 'a'
+        block_len += 1
         _cipher_len = len(encrypt_func(plain))
-        if _cipher_len == cipher_len:
-            block_len += 1
-        else:
+        if _cipher_len != cipher_len:
             break
     return block_len, pad_len
 
-def is_ecb_mode(encrypt_func, block_len, pad_len, block_cnt):
+def is_ecb_mode(encrypt_func, block_len, pad_len):
+    if block_len == 1:
+        return False
     # extra block_len for "xxaa aaaa aaax" pad_len overflow
     plain = 'a' * (pad_len + block_len * 3)
     cipher = encrypt_func(plain)
@@ -68,7 +68,7 @@ def byte_at_a_time_ecb_decryption(encrypt_func):
         return None
     block_cnt = empty_len / block_len
 
-    if not is_ecb_mode(encrypt_func, block_len, pad_len, block_cnt):
+    if not is_ecb_mode(encrypt_func, block_len, pad_len):
         print "Not ECB mode"
         return None
     else:
