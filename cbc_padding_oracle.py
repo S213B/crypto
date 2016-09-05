@@ -23,6 +23,8 @@ test_plain = None
 
 def gen_token():
     plain = token_plain[my_rand.my_rand(len(token_plain))]
+    import base64
+    plain = base64.b64decode(plain)
     global test_plain
     test_plain = plain
     iv = my_rand.my_rand_byte(16)
@@ -92,7 +94,7 @@ def main():
     if plain == test_plain:
         print "CBC padding oracle succeed"
         #print test_plain
-        #print plain
+        print plain
     else:
         print "CBC padding oracle failed"
         diff(test_plain, plain)

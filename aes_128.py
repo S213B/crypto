@@ -253,6 +253,9 @@ def list_to_matrix(text):
 def matrix_to_list(state):
     return [state[j][i] for i in range(4) for j in range(4)]
 
+# plaintext : byte list
+# key       : byte list
+# return    : byte list
 def aes_128_encrypt(plaintext, key):
     key = [key]
     key_expansion(key)
@@ -268,6 +271,9 @@ def aes_128_encrypt(plaintext, key):
     add_round_key(state, key[10])
     return matrix_to_list(state)
 
+# ciphertext : byte list
+# key        : byte list
+# return     : byte list
 def aes_128_decrypt(ciphertext, key):
     key = [key]
     key_expansion(key)
