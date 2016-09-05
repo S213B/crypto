@@ -13,13 +13,13 @@ def pkcs7_unpad(in_txt, block_size):
     padding = in_txt[-1]
     cnt = ord(padding)
     if len(in_txt) % block_size != 0:
-        print "length error"
+        #print "text length", len(in_txt), "is not multiple of block size", block_size
         raise BadPadError
     if cnt > block_size:
-        print "length short", cnt, block_size
+        #print "padding size", cnt, "is larger than block size", block_size
         raise BadPadError
     if in_txt[-cnt:] != padding * cnt:
-        print "pad error"
+        #print "padding error", cnt
         raise BadPadError
     return in_txt[:-cnt]
 
