@@ -5,6 +5,9 @@ from pkcs7 import *
 import binascii
 import base64
 
+# iv     : byte list
+# cipher : str
+# key    : str
 def cbc_decrypt(decrypt_func, iv, cipher, key, size = 16, add_func = xor_encrypt_bin):
     plain = []
     cbc_blocks = text_to_blocks([ord(c) for c in cipher], size)
@@ -14,6 +17,9 @@ def cbc_decrypt(decrypt_func, iv, cipher, key, size = 16, add_func = xor_encrypt
         iv = block
     return pkcs7_unpad(''.join([chr(i) for i in plain]), size)
 
+# iv     : byte list
+# cipher : str
+# key    : str
 def cbc_encrypt(encrypt_func, iv, plain, key, size = 16, add_func = xor_encrypt_bin):
     plain = pkcs7_pad(plain, size)
     cipher = []

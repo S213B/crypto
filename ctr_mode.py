@@ -3,7 +3,7 @@ import ecb_mode
 import struct
 import xor_encrypt
 
-# key    : string
+# key    : str
 # iv     : int
 # in_txt : str
 def ctr_mode(key, iv, in_txt, cipher_func = aes_128.aes_128_encrypt):
@@ -20,9 +20,15 @@ def ctr_mode(key, iv, in_txt, cipher_func = aes_128.aes_128_encrypt):
         counter += 1
     return out_txt
 
+# key    : str
+# iv     : int
+# in_txt : str
 def ctr_encrypt(key, iv, in_txt, cipher_func = aes_128.aes_128_encrypt):
     return ctr_mode(key, iv, in_txt, cipher_func)
 
+# key    : str
+# iv     : int
+# in_txt : str
 def ctr_decrypt(key, iv, in_txt, cipher_func = aes_128.aes_128_encrypt):
     return ctr_mode(key, iv, in_txt, cipher_func)
 

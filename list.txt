@@ -16,8 +16,8 @@
 16. CBC bitflipping attacks                        (cbc_bitflip_atk.py)
 17. The CBC padding oracle                         (cbc_padding_oracle.py)
 18. Implement CTR, the stream cipher mode          (ctr_mode.py)
-19. Break fixed-nonce CTR mode using substitutions
-20. Break fixed-nonce CTR statistically
+19. Break fixed-nonce CTR mode using substitutions (brk_fixed_iv_ctr.py)
+20. Break fixed-nonce CTR statistically            (brk_fixed_iv_ctr2.py)
 21. Implement the MT19937 Mersenne Twister RNG
 22. Crack an MT19937 seed
 23. Clone an MT19937 RNG from its output
