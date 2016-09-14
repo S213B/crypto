@@ -21,7 +21,17 @@
 21. Implement the MT19937 Mersenne Twister RNG     (mt19937.py)
 22. Crack an MT19937 seed                          (crack_mt19937_seed.py)
 23. Clone an MT19937 RNG from its output           (clone_mt19937_rng.py)
-24. Create the MT19937 stream cipher and break it
+24. Create the MT19937 stream cipher and break it  (crk_mt19937_strm_cipher.py)
+25. Break "random access read/write" AES CTR       
+26. CTR bitflipping                                
+27. Recover the key from CBC with IV=Key           
+28. Implement a SHA-1 keyed MAC                    
+29. Break a SHA-1 keyed MAC using length extension 
+30. Break an MD4 keyed MAC using length extension  
+31. Implement and break HMAC-SHA1 with an 
+    artificial timing leak
+32. Break HMAC-SHA1 with a slightly less 
+    artificial timing leak
 
 Misc:
 ham_dis.py                             : calculate hamming distance

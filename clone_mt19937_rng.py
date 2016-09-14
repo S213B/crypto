@@ -51,17 +51,17 @@ def twist():
         MT[i] = MT[(i+m) % n] ^ t
     idx = 0
 
-def clone_mt19937_rng():
+def clone_mt19937_rng(rand_func):
     global n, idx, MT
     for i in range(n):
-        MT[i] = untemper(mt19937.random())
+        MT[i] = untemper(rand_func())
     idx = n
 
 def main():
     #for i in range(10):
-    clone_mt19937_rng()
+    clone_mt19937_rng(mt19937.extract_number)
     for i in range(n * 3 + 213):
-        orig = mt19937.random()
+        orig = mt19937.extract_number()
         clone = extract_number()
         #print "orig:", orig
         #print "clone:", clone

@@ -18,7 +18,7 @@ def seed_mt(seed):
     idx = n
     MT[0] = seed
     for i in range(1, len(MT)):
-        MT[i] = (f * (MT[i-1] ^ (MT[i-1] >> (w-2))) + i) & (lower_mask | upper_mask)
+        MT[i] = (f * (MT[i-1] ^ (MT[i-1] >> (w-2))) + i) & 0xFFFFFFFF
 
 def extract_number():
     global idx, MT
@@ -33,7 +33,7 @@ def extract_number():
     y = y ^ ((y << t) & c)
     z = y ^ (y >> l)
     idx += 1
-    return z & (lower_mask | upper_mask)
+    return z & 0xFFFFFFFF
 
 def twist():
     global idx, MT
@@ -46,8 +46,8 @@ def twist():
     idx = 0
 
 def random():
-    return extract_number()
-    #return extract_number() / float(lower_mask | upper_mask)
+    #return extract_number()
+    return extract_number() / float(1 << 32)
 
 seed_mt(int(time.time() + 213))
 #seed_mt(213)
