@@ -42,12 +42,14 @@ def get_const(t):
     return k[t/20]
 
 def padding(msg):
+    pad_str = chr(0x80)
+    zero_str = ''
     len_str = struct.pack('>Q', len(msg)*8)
-    apd_len = 56 - (len(msg) % 56)
-    if apd_len != 0:
-        msg += chr(0x80) + chr(0) * (apd_len - 1)
-    msg += len_str
-    return msg
+    zero_pad_len = ((~(len(msg) + 9)) & (64-1)) + 1
+    if zero_pad_len != 64:
+        zero_str = chr(0) * zero_pad_len
+    pad_str += zero_str + len_str
+    return pad_str
 
 def parsing(msg):
     return ecb_mode.text_to_blocks(msg, 64)
@@ -62,7 +64,8 @@ def init_hash_val():
 
 def preproc(msg):
     init_hash_val()
-    msg = padding(msg)
+    msg += padding(msg)
+    #print len(msg)
     msg = parsing(msg)
     return msg
 
@@ -117,11 +120,21 @@ def hmac_sha1(key, msg):
     return sha1(key + msg)
 
 def main():
-    msg = "213"
-    h = sha1(msg)
+    import my_rand
+    import sha
     import binascii
-    print binascii.hexlify(h)
+    for i in range(213):
+        msg = my_rand.my_rand_str(my_rand.my_rand(213))
+        h = sha1(msg)
+        s = sha.new(msg)
+        if h != s.digest():
+            print "SHA-1 verification failed"
+            print len(msg)
+            print h
+            print s.digest()
+
     key = "This is key"
+    msg = my_rand.my_rand_str(my_rand.my_rand(213))
     hmac = hmac_sha1(key, msg)
     print binascii.hexlify(hmac)
 
