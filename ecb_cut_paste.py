@@ -66,7 +66,7 @@ def my_decode(cookie):
 def main():
     key = my_rand_str(16)
 
-    plain_dic = profile_for("xlq.s213b@gmail.com")
+    plain_dic = profile_for("xxx.yyy@zzz.com")
     plain_cookie = my_encode(plain_dic)
     plain = plain_cookie
     print "plain:\n" + plain

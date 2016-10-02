@@ -18,7 +18,7 @@ def rotl(x, n):
     return ((x << n) | (x >> (32-n))) & 0xFFFFFFFF
 
 def ch(x, y, z):
-    return (x & y) ^ ((~x) & ((1<<32)-1) & z)
+    return (x & y) ^ ((~x) & 0xFFFFFFFF & z)
 
 def parity(x, y, z):
     return x ^ y ^ z
