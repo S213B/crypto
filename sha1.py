@@ -43,24 +43,22 @@ def get_const(t):
 
 def padding(msg):
     pad_str = chr(0x80)
-    zero_str = ''
     len_str = struct.pack('>Q', len(msg)*8)
-    zero_pad_len = ((~(len(msg) + 9)) & (64-1)) + 1
-    if zero_pad_len != 64:
-        zero_str = chr(0) * zero_pad_len
+    zero_pad_len = (((~(len(msg) + 9)) & (64-1)) + 1) & (64-1)
+    zero_str = chr(0) * zero_pad_len
     pad_str += zero_str + len_str
     return pad_str
 
 def parsing(msg):
     return ecb_mode.text_to_blocks(msg, 64)
 
-def init_hash_val():
+def init_hash_val(a = 0x67452301, b = 0xefcdab89, c = 0x98badcfe, d = 0x10325476, e = 0xc3d2e1f0):
     global h0, h1, h2, h3, h4
-    h0 = 0x67452301
-    h1 = 0xefcdab89
-    h2 = 0x98badcfe
-    h3 = 0x10325476
-    h4 = 0xc3d2e1f0
+    h0 = a
+    h1 = b
+    h2 = c
+    h3 = d
+    h4 = e
 
 def preproc(msg):
     init_hash_val()
@@ -128,7 +126,7 @@ def main():
         h = sha1(msg)
         s = sha.new(msg)
         if h != s.digest():
-            print "SHA-1 verification failed"
+            print "SHA-1 failed"
             print len(msg)
             print h
             print s.digest()
