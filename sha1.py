@@ -12,7 +12,7 @@ h3 = None
 h4 = None
 
 def add(x, y):
-    return (x+y) % (1<<32)
+    return (x+y) & 0xFFFFFFFF #% (1<<32)
 
 def rotl(x, n):
     return ((x << n) | (x >> (32-n))) & 0xFFFFFFFF

@@ -27,13 +27,14 @@
 27. Recover the key from CBC with IV=Key           (crk_cbc_iv_eq_key.py)
 28. Implement a SHA-1 keyed MAC                    (sha1.py)
 29. Break a SHA-1 keyed MAC using length extension (brk_hmac_by_len_ext.py)
-30. Break an MD4 keyed MAC using length extension  
+30. Break an MD4 keyed MAC using length extension  (brk_hmac_by_len_ext2.py)
 31. Implement and break HMAC-SHA1 with an 
     artificial timing leak
 32. Break HMAC-SHA1 with a slightly less 
     artificial timing leak
 
 Misc:
+md4.py                                 : MD4 implementation
 ham_dis.py                             : calculate hamming distance
 ecb_mode.py                            : implement ecb mode
 my_rand.py                             : generate random object

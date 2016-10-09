@@ -1,0 +1,1 @@
+gcc md4.c mddriver.c -DMD=4 -o md4

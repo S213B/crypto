@@ -29,7 +29,7 @@ def make_mt19937_rand_list(idx, rng_s, rng_e):
         rand_list[rand_num] = i
     return rand_list
 
-def crack_mt19937_seed(rand_num, idx, rng_s, rng_e)
+def crack_mt19937_seed(rand_num, idx, rng_s, rng_e):
     rand_list = make_mt19937_rand_list(idx, rng_s, rng_e)
     if rand_num in rand_list:
         return rand_list[rand_num]
