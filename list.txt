@@ -1,3 +1,4 @@
+Set1:
 1.  Convert hex to base64                          (hex2b64.py)
 2.  Fixed XOR                                      (xor2str.py)
 3.  Single-byte XOR cipher                         (single_byte_xor_cipher.py)
@@ -6,6 +7,8 @@
 6.  Break repeating-key XOR                        (rep_xor_decrypt.py)
 7.  AES in ECB mode                                (aes_128.py)
 8.  Detect AES in ECB mode                         (ecb_detect.py)
+
+Set2:
 9.  Implement PKCS#7 padding                       (pkcs7.py)
 10. Implement CBC mode                             (cbc_mode.py)
 11. An ECB/CBC detection oracle                    (ecb_cbc_detect.py)
@@ -14,6 +17,8 @@
 14. Byte-at-a-time ECB decryption (Harder)         (byte_at_a_time_ecb_decryption2.py)
 15. PKCS#7 padding validation                      (pkcs7.py)
 16. CBC bitflipping attacks                        (cbc_bitflip_atk.py)
+
+Set3:
 17. The CBC padding oracle                         (cbc_padding_oracle.py)
 18. Implement CTR, the stream cipher mode          (ctr_mode.py)
 19. Break fixed-nonce CTR mode using substitutions (brk_fixed_iv_ctr.py)
@@ -22,6 +27,8 @@
 22. Crack an MT19937 seed                          (crack_mt19937_seed.py)
 23. Clone an MT19937 RNG from its output           (clone_mt19937_rng.py)
 24. Create the MT19937 stream cipher and break it  (crk_mt19937_strm_cipher.py)
+
+Set4:
 25. Break "random access read/write" AES CTR       (crk_rarw_aes_ctr.py)
 26. CTR bitflipping                                (ctr_bitflip_atk.py)
 27. Recover the key from CBC with IV=Key           (crk_cbc_iv_eq_key.py)
@@ -33,11 +40,25 @@
 32. Break HMAC-SHA1 with a slightly less 
     artificial timing leak
 
-Misc:
+Set5:
+33. Implement Diffie-Hellman                       (diffie_hellman.py)
+34. Implement a MITM key-fixing attack on          ()
+    Diffie-Hellman with parameter injection
+35. Implement DH with negotiated groups, and break ()
+    with malicious "g" parameters
+36. Implement Secure Remote Password (SRP)         ()
+37. Break SRP with a zero key                      ()
+38. Offline dictionary attack on simplified SRP    ()
+39. Implement RSA                                  ()
+40. Implement an E=3 RSA Broadcast attack          ()
+
+Util:
+hmac.py                                : HMAC implementation
 md4.py                                 : MD4 implementation
 ham_dis.py                             : calculate hamming distance
 ecb_mode.py                            : implement ecb mode
 my_rand.py                             : generate random object
-test_ecb_cbc.py                        : run ecb_cbc_detect.py 30 times to test correctness
-test_byte_at_a_time_ecb_decryption2.py : run byte_at_a_time_ecb_decryption2.py 30 times to test correctness
-test_all.py                            : test all for structure fine-tune
+
+##test_ecb_cbc.py                        : run ecb_cbc_detect.py 30 times to test correctness
+##test_byte_at_a_time_ecb_decryption2.py : run byte_at_a_time_ecb_decryption2.py 30 times to test correctness
+##test_all.py                            : test all for structure fine-tune
