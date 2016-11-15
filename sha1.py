@@ -109,11 +109,14 @@ def compute(blks):
     h += struct.pack(">I", h4)
     return h
 
+# msg : str
+# h   : str
 def sha1(msg):
     blks = preproc(msg)
     h = compute(blks)
     return h
 
+# key : str
 def hmac_sha1(key, msg):
     return sha1(key + msg)
 

@@ -42,7 +42,7 @@ Set4:
 
 Set5:
 33. Implement Diffie-Hellman                       (diffie_hellman.py)
-34. Implement a MITM key-fixing attack on          ()
+34. Implement a MITM key-fixing attack on          (mitm_atk_dh.py)
     Diffie-Hellman with parameter injection
 35. Implement DH with negotiated groups, and break ()
     with malicious "g" parameters
