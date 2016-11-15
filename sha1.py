@@ -117,6 +117,8 @@ def sha1(msg):
     return h
 
 # key : str
+# informal implementation, do not use
+# use hmac_sha1() inside hmac.py instead
 def hmac_sha1(key, msg):
     return sha1(key + msg)
 

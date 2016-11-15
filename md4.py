@@ -144,11 +144,15 @@ def compute(blks):
 
     return h
 
+# msg : str
+# h   : str
 def md4(msg):
     blks = preproc(msg)
     h = compute(blks)
     return h
 
+# key : str
+# informal implementation, do not use
 def hmac_md4(key, msg):
     return md4(key + msg)
 
