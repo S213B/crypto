@@ -4,6 +4,10 @@ import my_rand
 import cbc_mode
 import aes_128
 
+#How to use the code you just worked out to build a protocol and an "echo" bot?
+#How to do the parameter injection attack?
+#Cannot understand
+
 def main():
     dh = diffie_hellman.DiffieHellman()
 

@@ -44,7 +44,7 @@ Set5:
 33. Implement Diffie-Hellman                       (diffie_hellman.py)
 34. Implement a MITM key-fixing attack on          (mitm_atk_dh.py)
     Diffie-Hellman with parameter injection
-35. Implement DH with negotiated groups, and break ()
+35. Implement DH with negotiated groups, and break (mitm_atk_dh2.py)
     with malicious "g" parameters
 36. Implement Secure Remote Password (SRP)         ()
 37. Break SRP with a zero key                      ()
