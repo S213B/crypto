@@ -2,7 +2,7 @@ from diffie_hellman import DiffieHellman
 import sha1
 import binascii
 
-#Cannot understand the question
+#Cannot understand the problem description
 
 def main():
     #replace g with 1, p, p-1...
