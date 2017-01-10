@@ -47,7 +47,7 @@ Set5:
 35. Implement DH with negotiated groups, and break (mitm_atk_dh2.py)
     with malicious "g" parameters
 36. Implement Secure Remote Password (SRP)         (srp_dh.py)
-37. Break SRP with a zero key                      ()
+37. Break SRP with a zero key                      (srp_zero_key.py)
 38. Offline dictionary attack on simplified SRP    ()
 39. Implement RSA                                  ()
 40. Implement an E=3 RSA Broadcast attack          ()
